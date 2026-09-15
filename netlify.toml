@@ -1,0 +1,14 @@
+# Netlify configuration for building preview deploys of the valkey.io site.
+# Production is deployed via GitHub Actions (see .github/workflows/zola-deploy.yml);
+# Netlify here is for shareable preview URLs, especially per-pull-request Deploy Previews.
+
+[build]
+  # build/netlify-build.sh clones the sibling content repos, runs the init
+  # scripts, installs the pinned Zola, and runs `zola build` into public/.
+  command = "bash build/netlify-build.sh"
+  publish = "public"
+
+# Deploy Previews (one per pull request) and branch deploys are enabled from the
+# Netlify UI (Site configuration > Build & deploy > Deploy contexts). No extra
+# config is required here; the build script reads DEPLOY_PRIME_URL to set the
+# preview base_url automatically.
